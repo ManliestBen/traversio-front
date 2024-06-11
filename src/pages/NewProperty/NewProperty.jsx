@@ -18,7 +18,14 @@ const NewProperty = () => {
     dailyRate: '',
     numBathrooms: '',
     numBedrooms: '',
-    amenities: [],
+    // amenities: [
+    //   'Pool',
+      
+    // ],
+    amenities: {
+      'Pool': true,
+      'Hot Tub': false
+    },
     petFriendly: false,
     datesBooked: []
   })
@@ -30,8 +37,33 @@ const NewProperty = () => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     // Submit formData to API here
+
     navigate('/properties')
   }
+
+  const handleAmenityCheckbox = evt => {
+    let formDataCopy = {...formData}
+    // determine if checkbox is on or not
+    if (evt.target.checked) {
+      formDataCopy.amenities[evt.target.name] = true
+      setFormData(formDataCopy)
+    } else {
+      formDataCopy.amenities[evt.target.name] = false
+      setFormData(formDataCopy)
+    }
+  }
+
+  const handlePetCheckbox = evt => {
+    let formDataCopy = {...formData}
+    if (evt.target.checked) {
+      formDataCopy.petFriendly = true
+      setFormData(formDataCopy)
+    } else {
+      formDataCopy.petFriendly = false
+      setFormData(formDataCopy)
+    }
+  }
+
 
   return (
     <>
@@ -127,6 +159,34 @@ const NewProperty = () => {
               value={formData.numBedrooms}
               name="numBedrooms"
               onChange={handleChange}
+            />
+          </label>
+          <label className={styles.label}>
+            Pet Friendly?
+            <input
+              type='checkbox'
+              name="petFriendly"
+              onChange={handlePetCheckbox}
+              checked={formData.petFriendly}
+              />
+          </label>
+          <h4>Amenities</h4>
+          <label className={styles.label}>
+            Pool
+            <input
+              type='checkbox'
+              name="Pool"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Pool']}
+              />
+          </label>
+          <label className={styles.label}>
+            Hot Tub
+            <input
+              type='checkbox'
+              name="Hot Tub"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Hot Tub']}
             />
           </label>
         </form>
