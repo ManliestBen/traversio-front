@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
+import Properties from './pages/Properties/Properties'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -44,6 +45,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/properties"
+          element={
+            <ProtectedRoute user={user}>
+              <Properties />
             </ProtectedRoute>
           }
         />
