@@ -54,7 +54,7 @@ const ResetPassword = ({ handleAuthEvt }) => {
           />
         </label>
         <label className={styles.label}>
-          Current Password
+          Temporary Password
           <input
             type="password"
             value={password}
