@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -58,6 +59,12 @@ function App() {
           path="/auth/change-password"
           element={
             <ChangePassword handleAuthEvt={handleAuthEvt} />
+          }
+        />
+        <Route
+          path="/auth/reset-password"
+          element={
+            <ResetPassword handleAuthEvt={handleAuthEvt} />
           }
         />
       </Routes>

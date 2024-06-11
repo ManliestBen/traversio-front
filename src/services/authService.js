@@ -27,9 +27,9 @@ async function signup(signupFormData, photoData) {
   }
 }
 
-async function resetPassword(email) {
+async function triggerResetPassword(email) {
   try {
-    const res = await fetch(`${BASE_URL}/reset-password`, {
+    const res = await fetch(`${BASE_URL}/initiate-reset-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({email}),
@@ -88,4 +88,26 @@ async function changePassword(changePasswordFormData) {
   }
 }
 
-export { signup, getUser, logout, login, changePassword, resetPassword }
+async function resetPassword(changePasswordFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changePasswordFormData),
+    })
+    const json = await res.json()
+
+    if (json.err) throw new Error(json.err)
+
+    if (json.token) {
+      tokenService.removeToken()
+      tokenService.setToken(json.token)
+    }
+  } catch (err) {
+    throw new Error(err)
+  }
+}
+
+export { signup, getUser, logout, login, changePassword, triggerResetPassword, resetPassword }

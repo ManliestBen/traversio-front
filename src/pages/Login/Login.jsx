@@ -55,7 +55,7 @@ const LoginPage = ({ handleAuthEvt }) => {
 
   const handleResetPassword = (evt) => {
     evt.preventDefault()
-    authService.resetPassword(email)
+    authService.triggerResetPassword(email)
     setResetSubmitted(true)
   }
 
@@ -111,7 +111,7 @@ const LoginPage = ({ handleAuthEvt }) => {
           {resetSubmitted &&
             <>
               <p>An email has been sent to {email} with a temporary password.</p>
-              <Link to="/auth/change-password">Set New Password</Link>
+              <Link to="/auth/reset-password">Set New Password</Link>
             </>
           }
           <br/>
