@@ -45,6 +45,10 @@ const LoginPage = ({ handleAuthEvt }) => {
     return !(email && password)
   }
 
+  const isResetValid = () => {
+    return !(email)
+  }
+
   const handleToggleResetForm = () => {
     setShowReset(!showReset)
   }
@@ -102,7 +106,7 @@ const LoginPage = ({ handleAuthEvt }) => {
                   onChange={handleChange}
                 />
             </label>
-            <button type="submit">Reset Password</button>
+            <button disabled={isResetValid()} type="submit">Reset Password</button>
           </form>
           {resetSubmitted &&
             <>
@@ -110,6 +114,7 @@ const LoginPage = ({ handleAuthEvt }) => {
               <Link to="/auth/change-password">Set New Password</Link>
             </>
           }
+          <br/>
           <button onClick={handleToggleResetForm}>Cancel</button>
         </>
         
