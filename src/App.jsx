@@ -57,9 +57,7 @@ function App() {
         <Route
           path="/auth/change-password"
           element={
-            <ProtectedRoute user={user}>
-              <ChangePassword handleAuthEvt={handleAuthEvt} />
-            </ProtectedRoute>
+            <ChangePassword handleAuthEvt={handleAuthEvt} />
           }
         />
       </Routes>

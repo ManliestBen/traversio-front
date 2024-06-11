@@ -17,6 +17,7 @@ const LoginPage = ({ handleAuthEvt }) => {
     password: '',
   })
   const [showReset, setShowReset] = useState(false)
+  const [resetSubmitted, setResetSubmitted] = useState(false)
 
   const handleChange = evt => {
     setMessage('')
@@ -46,6 +47,12 @@ const LoginPage = ({ handleAuthEvt }) => {
 
   const handleToggleResetForm = () => {
     setShowReset(!showReset)
+  }
+
+  const handleResetPassword = (evt) => {
+    evt.preventDefault()
+    // send a request to back end to reset the password
+    setResetSubmitted(true)
   }
 
   return (
@@ -85,7 +92,7 @@ const LoginPage = ({ handleAuthEvt }) => {
       }
       {showReset &&
         <>
-          <form autoComplete='off' className={styles.form}>
+          <form onSubmit={handleResetPassword} autoComplete='off' className={styles.form}>
             <label className={styles.label}>
                 Email
                 <input
@@ -97,6 +104,12 @@ const LoginPage = ({ handleAuthEvt }) => {
             </label>
             <button type="submit">Reset Password</button>
           </form>
+          {resetSubmitted &&
+            <>
+              <p>An email has been sent to {email} with a temporary password.</p>
+              <Link to="/auth/change-password">Set New Password</Link>
+            </>
+          }
           <button onClick={handleToggleResetForm}>Cancel</button>
         </>
         
