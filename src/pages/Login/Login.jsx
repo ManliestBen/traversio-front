@@ -55,7 +55,7 @@ const LoginPage = ({ handleAuthEvt }) => {
 
   const handleResetPassword = (evt) => {
     evt.preventDefault()
-    // send a request to back end to reset the password
+    authService.resetPassword(email)
     setResetSubmitted(true)
   }
 
