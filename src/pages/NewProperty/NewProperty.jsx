@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-
 import styles from './NewProperty.module.css'
 
+import { create } from '../../services/propertyService'
 
 
 const NewProperty = () => {
@@ -65,8 +65,8 @@ const NewProperty = () => {
     formDataCopy.amenities = amenitiesArr
     console.log(formDataCopy)
     // Submit formData to API here
-
-    // navigate('/properties')
+    await create(formDataCopy)
+    navigate('/properties')
   }
 
   const isFormInvalid = () => {
