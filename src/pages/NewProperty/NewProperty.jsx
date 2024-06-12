@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css';
+
 import styles from './NewProperty.module.css'
 
 
 
 const NewProperty = () => {
   const navigate = useNavigate()
-  const [dateRange, setDateRange] = useState(new Date())
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -47,7 +45,6 @@ const NewProperty = () => {
       'Hair Dryer': false
     },
     petFriendly: false,
-    datesBooked: []
   })
 
   const handleChange = evt => {
@@ -56,12 +53,24 @@ const NewProperty = () => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
-    // write and run a function to store the dates
-    // in the datesBooked array (formData)
-
+    // run a function to turn the amenities object in formData
+    // into an array
+    let formDataCopy = {...formData}
+    let amenitiesArr = []
+    for (let key in formData.amenities) {
+      if (formData.amenities[key]) {
+        amenitiesArr.push(key)
+      }
+    }
+    formDataCopy.amenities = amenitiesArr
+    console.log(formDataCopy)
     // Submit formData to API here
 
-    navigate('/properties')
+    // navigate('/properties')
+  }
+
+  const isFormInvalid = () => {
+    return !(formData.name && formData.description && formData.streetAddress && formData.city && formData.state && formData.zipCode && formData.layout && formData.dailyRate && formData.numBathrooms && formData.numBedrooms )
   }
 
   const handleAmenityCheckbox = evt => {
@@ -92,7 +101,7 @@ const NewProperty = () => {
     <>
       <div className={styles.container}>
         <h2>Create a Property</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label className={styles.label}>
             Name
             <input
@@ -365,15 +374,11 @@ const NewProperty = () => {
               checked={formData.amenities['Hair Dryer']}
             />
           </label>
-          <Calendar
-            selectRange={true}
-            onChange={setDateRange}
-            value={dateRange}
-          />
+          <button disabled={isFormInvalid()} type="submit">Submit</button>
         </form>
       </div>
     </>
   )
 }
-//  'Game Room', 'Grill', 'Air Conditioning', 'Wifi', 'Kitchen', 'Washer/Dryer', 'Covered Parking', 'Balcony', 'Beach Access', 'TV', 'Sauna', 'Refrigerator', 'Dishwasher', 'Oven', 'Microwave', 'Gym', 'Hair Dryer'
+
 export default NewProperty
