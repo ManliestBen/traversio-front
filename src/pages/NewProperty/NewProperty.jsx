@@ -1,12 +1,20 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Calendar from 'react-calendar'
 
 import styles from './NewProperty.module.css'
 
 // 'Pool', 'Game Room', 'Grill', 'Air Conditioning', 'Wifi', 'Kitchen', 'Hot Tub', 'Washer/Dryer', 'Covered Parking', 'Balcony', 'Beach Access', 'TV', 'Sauna', 'Refrigerator', 'Dishwasher', 'Oven', 'Microwave', 'Gym', 'Hair Dryer'
 
+const bDate1 = new Date('2024-06-15').getUTCDate()
+const bDate2 = new Date('2024-06-13').getUTCDate()
+const bDate3 = new Date('2024-06-12').getUTCDate()
+
+const blackoutDates = [bDate1, bDate2, bDate3]
+
 const NewProperty = () => {
   const navigate = useNavigate()
+  const [date, setDate] = useState(new Date())
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -27,7 +35,7 @@ const NewProperty = () => {
       'Hot Tub': false
     },
     petFriendly: false,
-    datesBooked: []
+    datesBooked: [],
   })
 
   const handleChange = evt => {
@@ -37,9 +45,21 @@ const NewProperty = () => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     // Submit formData to API here
-
-    navigate('/properties')
+    console.log(getDatesInRange(date))
+    // navigate('/properties')
   }
+
+  function getDatesInRange(dates) {
+  const startDate = new Date(dates[0])
+  const endDate = new Date(dates[1])
+  const dateArray = []
+  let currentDate = startDate
+  while (currentDate <= endDate) {
+    dateArray.push(new Date(currentDate))
+    currentDate.setDate(currentDate.getDate() + 1)
+  }
+  return dateArray
+}
 
   const handleAmenityCheckbox = evt => {
     let formDataCopy = {...formData}
@@ -69,7 +89,7 @@ const NewProperty = () => {
     <>
       <div className={styles.container}>
         <h2>Create a Property</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label className={styles.label}>
             Name
             <input
@@ -189,6 +209,11 @@ const NewProperty = () => {
               checked={formData.amenities['Hot Tub']}
             />
           </label>
+          <label className={styles.label}>
+            Date Choice
+            <Calendar selectRange={true} onChange={setDate} value={formData.date} tileDisabled={(formData) => blackoutDates.includes(formData.date.getDate())}/>
+          </label>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </>

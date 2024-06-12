@@ -22,6 +22,7 @@ import * as authService from './services/authService'
 // styles
 import './App.css'
 
+
 function App() {
   const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
