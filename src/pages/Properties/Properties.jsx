@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 import styles from './Properties.module.css'
 
+import PropertyCard from '../../components/PropertyCard/PropertyCard'
+
 import * as propertyService from '../../services/propertyService'
 
 const Properties = () => {
@@ -22,6 +24,11 @@ const Properties = () => {
       <div className={styles.container}>
         <h2>Property Index</h2>
         <NavLink to='/properties/new'>Create a Property</NavLink>
+        <div className={styles.cardContainer}>
+          {properties.map(property =>
+            <PropertyCard key={property._id} property={property} />
+          )}
+        </div>
       </div>
     </>
   )
