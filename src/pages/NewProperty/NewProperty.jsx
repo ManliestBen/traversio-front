@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 import styles from './NewProperty.module.css'
 
 
 
 const NewProperty = () => {
   const navigate = useNavigate()
+  const [dateRange, setDateRange] = useState(new Date())
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -53,6 +56,9 @@ const NewProperty = () => {
 
   const handleSubmit = async evt => {
     evt.preventDefault()
+    // write and run a function to store the dates
+    // in the datesBooked array (formData)
+
     // Submit formData to API here
 
     navigate('/properties')
@@ -359,6 +365,11 @@ const NewProperty = () => {
               checked={formData.amenities['Hair Dryer']}
             />
           </label>
+          <Calendar
+            selectRange={true}
+            onChange={setDateRange}
+            value={dateRange}
+          />
         </form>
       </div>
     </>
