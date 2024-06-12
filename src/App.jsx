@@ -62,7 +62,7 @@ function App() {
           path="/properties/:propertyId"
           element={
             <ProtectedRoute user={user}>
-              <PropertyDetails />
+              <PropertyDetails user={user} />
             </ProtectedRoute>
           }
         />

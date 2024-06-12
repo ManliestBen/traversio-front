@@ -44,8 +44,23 @@ async function show(propertyId) {
   }
 }
 
+async function deleteProperty(propertyId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${propertyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export {
   create,
   index,
-  show
+  show,
+  deleteProperty as delete
 }

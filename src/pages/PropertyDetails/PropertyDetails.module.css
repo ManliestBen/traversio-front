@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  width: 150px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: rgb(243, 108, 108);
+  font-weight: bold;
+}
