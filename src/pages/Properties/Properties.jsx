@@ -26,7 +26,9 @@ const Properties = () => {
         <NavLink to='/properties/new'>Create a Property</NavLink>
         <div className={styles.cardContainer}>
           {properties.map(property =>
-            <PropertyCard key={property._id} property={property} />
+            <NavLink to={`/properties/${property._id}`} key={property._id}>
+              <PropertyCard property={property} />
+            </NavLink>
           )}
         </div>
       </div>

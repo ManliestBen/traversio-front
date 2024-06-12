@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import Properties from './pages/Properties/Properties'
 import NewProperty from './pages/NewProperty/NewProperty'
+import PropertyDetails from './pages/PropertyDetails/PropertyDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -54,6 +55,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <Properties />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/properties/:propertyId"
+          element={
+            <ProtectedRoute user={user}>
+              <PropertyDetails />
             </ProtectedRoute>
           }
         />

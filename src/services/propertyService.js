@@ -31,7 +31,21 @@ async function index() {
   }
 }
 
+async function show(propertyId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${propertyId}`, {
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export {
   create,
-  index
+  index,
+  show
 }
