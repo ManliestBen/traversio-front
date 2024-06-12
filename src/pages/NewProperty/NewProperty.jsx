@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './NewProperty.module.css'
 
-// 'Pool', 'Game Room', 'Grill', 'Air Conditioning', 'Wifi', 'Kitchen', 'Hot Tub', 'Washer/Dryer', 'Covered Parking', 'Balcony', 'Beach Access', 'TV', 'Sauna', 'Refrigerator', 'Dishwasher', 'Oven', 'Microwave', 'Gym', 'Hair Dryer'
+
 
 const NewProperty = () => {
   const navigate = useNavigate()
@@ -23,8 +23,25 @@ const NewProperty = () => {
       
     // ],
     amenities: {
-      'Pool': true,
-      'Hot Tub': false
+      'Pool': false,
+      'Hot Tub': false,
+      'Game Room': false,
+      'Grill': false,
+      'Air Conditioning': false,
+      'Wifi': false,
+      'Kitchen': false,
+      'Laundry': false,
+      'Covered Parking': false,
+      'Balcony': false,
+      'Beach Access': false,
+      'TV': false,
+      'Sauna': false,
+      'Refrigerator': false,
+      'Dish Washer': false,
+      'Oven': false,
+      'Microwave': false,
+      'Gym': false,
+      'Hair Dryer': false
     },
     petFriendly: false,
     datesBooked: []
@@ -189,10 +206,163 @@ const NewProperty = () => {
               checked={formData.amenities['Hot Tub']}
             />
           </label>
+          <label className={styles.label}>
+            Game Room
+            <input
+              type='checkbox'
+              name="Game Room"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Game Room']}
+            />
+          </label>
+          <label className={styles.label}>
+            Grill
+            <input
+              type='checkbox'
+              name="Grill"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Grill']}
+            />
+          </label>
+          <label className={styles.label}>
+            Air Conditioning
+            <input
+              type='checkbox'
+              name="Air Conditioning"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Air Conditioning']}
+            />
+          </label>
+          <label className={styles.label}>
+            Wifi
+            <input
+              type='checkbox'
+              name="Wifi"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Wifi']}
+            />
+          </label>
+          <label className={styles.label}>
+            Kitchen
+            <input
+              type='checkbox'
+              name="Kitchen"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Kitchen']}
+            />
+          </label>
+          <label className={styles.label}>
+            Laundry
+            <input
+              type='checkbox'
+              name="Laundry"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Laundry']}
+            />
+          </label>
+          <label className={styles.label}>
+            Covered Parking
+            <input
+              type='checkbox'
+              name="Covered Parking"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Covered Parking']}
+            />
+          </label>
+          <label className={styles.label}>
+            Balcony
+            <input
+              type='checkbox'
+              name="Balcony"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Balcony']}
+            />
+          </label>
+          <label className={styles.label}>
+            Beach Access
+            <input
+              type='checkbox'
+              name="Beach Access"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Beach Access']}
+            />
+          </label>
+          <label className={styles.label}>
+            TV
+            <input
+              type='checkbox'
+              name="TV"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['TV']}
+            />
+          </label>
+          <label className={styles.label}>
+            Sauna
+            <input
+              type='checkbox'
+              name="Sauna"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Sauna']}
+            />
+          </label>
+          <label className={styles.label}>
+            Refrigerator
+            <input
+              type='checkbox'
+              name="Refrigerator"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Refrigerator']}
+            />
+          </label>
+          <label className={styles.label}>
+            Dish Washer
+            <input
+              type='checkbox'
+              name="Dish Washer"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Dish Washer']}
+            />
+          </label>
+          <label className={styles.label}>
+            Oven
+            <input
+              type='checkbox'
+              name="Oven"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Oven']}
+            />
+          </label>
+          <label className={styles.label}>
+            Microwave
+            <input
+              type='checkbox'
+              name="Microwave"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Microwave']}
+            />
+          </label>
+          <label className={styles.label}>
+            Gym
+            <input
+              type='checkbox'
+              name="Gym"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Gym']}
+            />
+          </label>
+          <label className={styles.label}>
+            Hair Dryer
+            <input
+              type='checkbox'
+              name="Hair Dryer"
+              onChange={handleAmenityCheckbox}
+              checked={formData.amenities['Hair Dryer']}
+            />
+          </label>
         </form>
       </div>
     </>
   )
 }
-
+//  'Game Room', 'Grill', 'Air Conditioning', 'Wifi', 'Kitchen', 'Washer/Dryer', 'Covered Parking', 'Balcony', 'Beach Access', 'TV', 'Sauna', 'Refrigerator', 'Dishwasher', 'Oven', 'Microwave', 'Gym', 'Hair Dryer'
 export default NewProperty
