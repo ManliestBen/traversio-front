@@ -12,6 +12,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import Properties from './pages/Properties/Properties'
 import NewProperty from './pages/NewProperty/NewProperty'
 import PropertyDetails from './pages/PropertyDetails/PropertyDetails'
+import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -22,6 +23,11 @@ import * as authService from './services/authService'
 
 // styles
 import './App.css'
+
+// Build profile details page (should work for self or others, conditionally)
+  // list trips
+// add a trip (button on PropertyDetails)
+  // build a NewTrip page
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
@@ -47,6 +53,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profiles/:profileId"
+          element={
+            <ProtectedRoute user={user}>
+              <ProfileDetails user={user} />
             </ProtectedRoute>
           }
         />
