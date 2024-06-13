@@ -11,6 +11,7 @@ const NewTrip = (props) => {
   const navigate = useNavigate()
   const {propertyId} = useParams()
   const [property, setProperty] = useState({})
+  const [blackoutDates, setBlackoutDates] = useState([])
   const [formData, setFormData] = useState({
     name: '',
     plannedBy: props.user.profile,
@@ -22,6 +23,12 @@ const NewTrip = (props) => {
     const fetchPropertyData = async () => {
       const propertyData = await propertyService.show(propertyId)
       setProperty(propertyData)
+      const datesToAdd = []
+      console.log(propertyData.datesBooked[0])
+      propertyData.datesBooked.forEach(date => {
+        datesToAdd.push(new Date(date.substring(0, 10)).getUTCDate())
+      })
+      setBlackoutDates(datesToAdd)
     }
     fetchPropertyData()
   }, [propertyId])
