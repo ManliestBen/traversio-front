@@ -10,6 +10,12 @@ button {
   width: 150px;
   height: 30px;
   border-radius: 8px;
-  background-color: rgb(243, 108, 108);
+  background-color: rgb(229, 77, 77);
   font-weight: bold;
+  cursor: pointer;
+}
+
+.bookButton {
+  background-color: cornflowerblue;
+  margin-top: 20px;
 }

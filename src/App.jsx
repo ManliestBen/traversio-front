@@ -13,6 +13,7 @@ import Properties from './pages/Properties/Properties'
 import NewProperty from './pages/NewProperty/NewProperty'
 import PropertyDetails from './pages/PropertyDetails/PropertyDetails'
 import ProfileDetails from './pages/ProfileDetails/ProfileDetails'
+import NewTrip from './pages/NewTrip/NewTrip'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -77,6 +78,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <PropertyDetails user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/properties/:propertyId/newTrip"
+          element={
+            <ProtectedRoute user={user}>
+              <NewTrip user={user} />
             </ProtectedRoute>
           }
         />

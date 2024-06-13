@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, NavLink } from "react-router-dom"
 
 import styles from './PropertyDetails.module.css'
 
@@ -37,6 +37,11 @@ const PropertyDetails = (props) => {
         {property.owner._id === props.user.profile &&
           <button onClick={() => handleDeleteProperty(propertyId)}>Delete Property</button>
         }
+        <NavLink to={`/properties/${propertyId}/newTrip`}>
+          <button className={styles.bookButton}>
+            Book this property
+          </button>
+        </NavLink>
       </div>
 
     </>
