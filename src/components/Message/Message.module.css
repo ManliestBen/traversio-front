@@ -9,10 +9,11 @@ h5 {
   height: 35px;
   padding-left: 10px;
   margin: 0 0;
+  color: gray
 }
 
-.unRead {
-  background-color: gray;
+.unRead > h5 {
+  color: white;
 }
 
 .toFrom {
