@@ -4,3 +4,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.messageButton {
+  background-color: purple;
+  color: white;
+  margin-bottom: 20px;
+}
+
+label {
+  display: flex;
+}
+
+input, textarea {
+  margin-left: 10px;
+}
