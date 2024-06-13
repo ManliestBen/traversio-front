@@ -26,7 +26,7 @@ const NewTrip = (props) => {
       const datesToAdd = []
       console.log(propertyData.datesBooked[0])
       propertyData.datesBooked.forEach(date => {
-        datesToAdd.push(new Date(date.substring(0, 10)).getUTCDate())
+        datesToAdd.push(new Date(date))
       })
       setBlackoutDates(datesToAdd)
     }
@@ -77,6 +77,11 @@ const NewTrip = (props) => {
             selectRange={true}
             onChange={setDates}
             value={dates}
+            tileDisabled={({date}) => blackoutDates.some(disabledDate => 
+              Date.UTC(date.getFullYear()) === Date.UTC(disabledDate.getFullYear()) && 
+              Date.UTC(date.getMonth()) === Date.UTC(disabledDate.getMonth()) &&
+              Date.UTC(date.getDate()) === Date.UTC(disabledDate.getDate()) 
+            )}
           />
           <button className={styles.submitTripBtn} type="submit">Create Trip</button>
         </form>
