@@ -2,16 +2,13 @@ import { useState } from 'react'
 
 import styles from './Message.module.css'
 
-const Message = ({message, user, profile, handleMarkRead}) => {
+const Message = ({message, user, handleMarkRead}) => {
   const [displayMessage, setDisplayMessage] = useState(false)
 
 
   const handleOpenMessage = async () => {
-    if (message.read || message.sender._id === user.profile) {
-      console.log('do nothing')
-    } else {
+    if (!(message.read || message.sender._id === user.profile)) {
       await handleMarkRead(message._id)
-      console.log('mark as read')
     }
     setDisplayMessage(!displayMessage)
   }
