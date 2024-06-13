@@ -30,3 +30,10 @@ h5 {
   width: 70%;
   border: 1px solid white;  
 }
+
+.messageContent {
+  display: flex;
+  width: 90%;
+  border: 1px solid white;
+  padding: 10px;
+}

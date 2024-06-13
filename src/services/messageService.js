@@ -22,6 +22,21 @@ async function create(formData) {
   }
 }
 
+async function markRead(messageId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${messageId}/markRead`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export {
-  create
+  create,
+  markRead
 }

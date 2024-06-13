@@ -6,7 +6,7 @@ import styles from './ProfileDetails.module.css'
 import Message from '../../components/Message/Message'
 
 import { show } from '../../services/profileService'
-import { create } from '../../services/messageService'
+import { create, markRead } from '../../services/messageService'
 
 const ProfileDetails = (props) => {
   const [profile, setProfile] = useState({})
@@ -43,6 +43,11 @@ const ProfileDetails = (props) => {
     clearForm()
   }
 
+  const handleMarkRead = async (messageId) => {
+    const updatedProfile = await markRead(messageId)
+    setProfile(updatedProfile)
+  }
+
   const clearForm = () => {
     const clearedForm = {...formData}
     clearedForm.content = ''
@@ -63,7 +68,13 @@ const ProfileDetails = (props) => {
             <div className={styles.container}>
               <h1>This is my profile</h1>
               {profile.messages.map(message =>
-                <Message key={message._id} message={message} user={props.user} profile={profile} />
+                <Message 
+                  handleMarkRead={handleMarkRead} 
+                  key={message._id} 
+                  message={message} 
+                  user={props.user} 
+                  profile={profile} 
+                />
               )}
             </div>
           </>
