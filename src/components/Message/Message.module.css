@@ -1,0 +1,26 @@
+.message {
+  display: flex;
+  width: 90%;
+}
+
+h5 {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding-left: 10px;
+}
+
+.toFrom {
+  border: 1px solid white;
+  width: 10%;
+}
+
+.senderRecipient {
+  width: 20%;
+  border: 1px solid white;
+}
+  
+.subject {
+  width: 70%;
+  border: 1px solid white;  
+}

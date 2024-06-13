@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 
 import styles from './ProfileDetails.module.css'
 
+import Message from '../../components/Message/Message'
+
 import { show } from '../../services/profileService'
 import { create } from '../../services/messageService'
 
@@ -33,18 +35,39 @@ const ProfileDetails = (props) => {
 
   const handleSendMessage = async evt => {
     evt.preventDefault()
+    await create(formData)
     setMessageSent(true)
     setTimeout(() => {
       setMessageSent(false)
     }, 2000)
+    clearForm()
+  }
+
+  const clearForm = () => {
+    const clearedForm = {...formData}
+    clearedForm.content = ''
+    clearedForm.subject = ''
+    setFormData(clearedForm)
     setDisplayForm(!displayForm)
+  }
+
+  const isFormInvalid = () => {
+    return !(formData.subject && formData.content)
   }
 
   return (
     <>
       <div className={styles.container}>
         {props.user.profile === profile._id &&
-          <h1>This is my profile</h1>
+          <>
+            <div className={styles.container}>
+              <h1>This is my profile</h1>
+              {profile.messages.map(message =>
+                <Message key={message._id} message={message} user={props.user} profile={profile} />
+              )}
+            </div>
+          </>
+          
         }
         {props.user.profile !== profile._id &&
         <>
@@ -55,6 +78,7 @@ const ProfileDetails = (props) => {
             <label className={styles.label}>
               Subject
               <input
+                autoComplete='off'
                 value={formData.subject}
                 name="subject"
                 onChange={handleChange}
@@ -63,6 +87,7 @@ const ProfileDetails = (props) => {
             <label className={styles.label}>
               Message
               <textarea
+                autoComplete='off'
                 value={formData.content}
                 name="content"
                 cols={50}
@@ -70,8 +95,8 @@ const ProfileDetails = (props) => {
                 onChange={handleChange}
               />
             </label>
-            <button onClick={handleSendMessage} className={styles.messageButton}>Send 📨</button>
-            <button onClick={() => setDisplayForm(!displayForm)}>Cancel</button>
+            <button disabled={isFormInvalid()} onClick={handleSendMessage} className={styles.messageButton}>Send 📨</button>
+            <button onClick={clearForm}>Cancel</button>
           </form>}
         </>
         }

@@ -3,12 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .messageButton {
   background-color: purple;
   color: white;
   margin-bottom: 20px;
+}
+
+.messageButton:disabled {
+  cursor: not-allowed;
+  background-color: rgba(128, 0, 128, 0.5);
 }
 
 label {
