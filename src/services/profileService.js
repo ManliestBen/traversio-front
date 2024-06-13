@@ -43,4 +43,20 @@ async function addPhoto(photoData) {
   }
 }
 
-export { getAllProfiles, addPhoto, show }
+async function addTrip(formData) {
+  try {
+    const res = await fetch(`${BASE_URL}/addTrip`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    return await res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export { getAllProfiles, addPhoto, show, addTrip }
